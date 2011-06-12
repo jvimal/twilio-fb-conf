@@ -1,0 +1,54 @@
+Twilio+Freshbooks demo application
+----------------------------------
+
+This is a demo app that integrates with your
+FreshBooks account and enables a project
+manager to start/end a conference call with
+ALL team members, using Twilio.
+
+At the end of the call, the time-sheet is
+modified to reflect the time spent in the
+conference call (a phone meeting).
+
+To run this app, please checkout this source
+tree, fill in the necessary fields:
+
+  * Twilio Account ID
+  * Twilio Account secret
+  * A valid Caller ID
+  * The Twilio webhook's root URL, e.g.: http://testapp.com/tiwlio/
+
+Dependencies: Install the gems listed in the
+.gems file.  Also, do:
+
+  $ cd /path/to/README/on/webserver
+  $ git clone https://github.com/jdiller/ruby-freshbooks.git
+
+
+To run the application:
+
+  $ ruby app.rb
+
+SCREENSHOT: Check a sample screenshot of the application
+in twilio-fb.png
+
+Once you're done, visit the application URL
+and proceed to login. (Default: localhost:4567)
+
+Caveats:
+  * Should have used OAuth for authenticating,
+    but I was late in requesting the OAuth
+    credentials to the FreshBooks team.
+
+  * I just have a demo FreshBooks account, which
+    doesn't permit more than one staff per project.
+    Hence, I cannot test a conference call, as at
+    least two staffs are required.
+
+TODO:
+  * Log the time sheets on a per-person basis, so
+    that each person's contribution to the conference
+    call is quantified.
+
+  * Make the data stores persistent in database.
+
