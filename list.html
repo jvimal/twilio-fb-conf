@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="utf-8"> 
+  <title>List of projects</title>
+<style>
+input[type="text"] {
+  width: 200px;
+}
+* {
+  font-family: sans-serif;
+}
+</style>
+</head>
+<%
+def check_conference(id)
+	$conference.has_key? "#{@session[:token]}:#{id}"
+end
+%>
+<body>
+	<h2>List of projects</h2>
+	<h4><%= @site_name %></h4>
+	<h4><a href="/logout">Logout</a></h4>
+	<hr/>
+	<% if @msg %>
+	<div style="background: #f0a8a8">
+		<%= @msg %>
+	</div>
+	<% end %>
+	<ol>
+	<% @projects.each { |proj| %>
+		<li>
+			<b>Name:</b> <%= proj[:name] %><br/>
+			<b>Conference running: </b> <%= check_conference proj[:id] %><br/>
+			<b>Staff:</b>
+			<ol>
+				<li>
+				<% proj[:staffs].each { |staff| %>
+					Name: <%= staff[:name] %> <br/>
+					Email: <%= staff[:email] %> <br/>
+					Mobile: <%= staff[:mobile] %> <br/>
+					In Conference: <b><%= ($conference[@key]||[]).member? staff[:mobile] %></b>
+				<% } %>
+				<div>
+					<a href="/in/conference/<%= proj[:id] %>">Start conference call</a> |
+					<a href="/in/conference_end/<%= proj[:id] %>">End conference call</a> |
+					<form action="/in/page/<%= proj[:id] %>">
+						<input type="text" value="Get ready for meeting!" name="body">
+						<input type="submit" value="Page all!"/>
+					</form>
+				</div>
+				</li>
+			</ol>
+		</li>
+		<hr/>
+	<% } %>
+	</ol>
+</body>
