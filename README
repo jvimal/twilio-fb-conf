@@ -39,6 +39,8 @@ Caveats:
   * Should have used OAuth for authenticating,
     but I was late in requesting the OAuth
     credentials to the FreshBooks team.
+    Currently, to authenticate, the app requires
+    the developer secret key.
 
   * I just have a demo FreshBooks account, which
     doesn't permit more than one staff per project.
